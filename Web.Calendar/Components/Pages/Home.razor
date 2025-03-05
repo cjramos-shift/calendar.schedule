@@ -1,0 +1,55 @@
+﻿@page "/"
+
+<PageTitle>Calendário</PageTitle>
+
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+		var calendarEl = document.getElementById('calendar');
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+		  initialView: 'dayGridMonth',
+		  selectable: true,
+		  locale: 'pt-br',
+		 //  dateClick: function (info) {
+			//   let title = prompt("Digite o título do evento:");
+			// if (title) {
+			// 	calendar.addEvent({
+			// 		title: title,
+			// 		start: info.dateStr,
+			// 		allDay: true
+			// 	});
+			// 	alert(`Evento adicionado: ${title} em ${info.dateStr}`);
+			// }
+		 //  },
+		  eventClick: function (info) {
+			  alert('Event: ' + info.event.title);
+			  alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+			  alert('View: ' + info.view.type);
+			  alert('Teste data ' + info.dateStr);
+
+			  // change the border color just for fun
+			  info.el.style.borderColor = 'red';
+			},
+			select: function (info) {
+			let title = prompt("Digite o título do evento:");
+			if (title) {
+				calendar.addEvent({
+					title: title,
+					start: info.startStr,
+					end: info.endStr,
+					allDay: false
+				});
+				alert(`Evento adicionado: ${title}\nInício: ${info.startStr}\nFim: ${info.endStr}`);
+			}
+		}
+		});
+
+		calendar.render();
+	  });
+
+</script>
+
+<h1>Agenda!</h1>
+
+<div id='calendar'></div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>

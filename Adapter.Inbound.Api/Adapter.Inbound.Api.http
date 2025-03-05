@@ -1,0 +1,6 @@
+@Adapter.Inbound.Api_HostAddress = http://localhost:5130
+
+GET {{Adapter.Inbound.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
